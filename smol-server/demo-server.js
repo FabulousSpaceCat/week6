@@ -36,32 +36,30 @@ http.createServer((req,res) => {
         '.wasm': 'application/wasm'
     };
     // For everything else (there's mastercard)
-    contentType = mimeTypes[extname] || 'application/octet-stream';
+    let contentType = mimeTypes[extname] || 'application/octet-stream';
     // Now we handle errors, this is mostly from the MDN
     fs.readFile(filePath, (err, con) => {
         const headers = {
-            "Content-Type": "text/plain",
+            "Content-Type": contentType,
         }
         if (err) {
             if(err.code == 'ENOENT') {
                 // I'm writing my own error handling, mostly from yesterday's lesson
                 let statusCode = 404;
-                let body = `
-                    ${con}, what? \n
-                    These are not the droids you're looking for. \n 
-                    Check your url and try again, error ${statusCode}.`;
+                let body = 
+                    `<p>These are not the droids you're looking for.</p>
+                     <p>Check your url and try again, error ${statusCode}.</p>`;
                 res.writeHead(statusCode, headers);
-                res.end(body, 'utf-8');
+                res.end(body);
             
             }
             else {
                 let statusCode = 500;
-                let body = `
-                    ${con}, what? \n
-                    Look out Ma, she's gonna blow! \n 
-                    Check with the site admin about this error ${statusCode}.`;
+                let body = 
+                    `<p>Look out Ma, she's gonna blow!</p>
+                     <p>Check with the site admin about this error ${statusCode}.</p>`;
                 res.writeHead(statusCode, headers);
-                res.end(body, 'utf-8');
+                res.end(body);
             
             };
         }
@@ -69,7 +67,7 @@ http.createServer((req,res) => {
         else {
             let statusCode = 200;
             res.writeHead(statusCode, headers);
-            res.end(con, 'utf-8');
+            res.end(con);
         };
     });
 //And then we tack listen straight on instead of making a function after
