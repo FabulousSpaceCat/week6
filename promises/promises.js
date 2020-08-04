@@ -56,6 +56,7 @@ newPost("Title #3", "Post body #3")
 async function alsoNewPost() {
     await newPost("Title #4", "Post body #4");
     await newPost("Title #5", "Post body #5");
+    console.log("Clonk.")
     getPosts();
 }
 
