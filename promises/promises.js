@@ -45,6 +45,7 @@ function newPost(title, body) {
 newPost("Title #3", "Post body #3")
     .then(() => {
         getPosts();
+        console.log("Ding!")
     })
     .catch((err) => {
         website.innerHTML = err;
@@ -58,7 +59,6 @@ async function alsoNewPost() {
     getPosts();
 }
 
-// This seems redundant, though?  Would you have to write a function every time you wanted to add a post?
 // Can an async function await many conditions?  We're about to find out.
 alsoNewPost();
 
@@ -73,6 +73,7 @@ const promise7 = newPost("Title #7", "Post body #7");
 Promise.all([promise6, promise7]) // They just go in an array, same notation after as before
     .then(() => {
         getPosts();
+        console.log("Ding ding!")
     })
     .catch((err) => {
         website.innerHTML = err;
@@ -84,3 +85,5 @@ Promise.all([promise6, promise7]) // They just go in an array, same notation aft
 // This was not unexpected, but we probably don't want to mix async and .then() like that
 // Unless we're going for that effect
 // Should probably watch some videos on both
+
+// I left it there on purpose to ask questions about
