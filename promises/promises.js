@@ -75,11 +75,12 @@ Promise.all([promise6, promise7]) // They just go in an array, same notation aft
         getPosts();
     })
     .catch((err) => {
-        website.innerHTML = err
+        website.innerHTML = err;
     });
 
-// Arrow notation for anonymous functions is nice btw
+// Arrow notation is nice btw
 
 // So the async function dropped post #5 in there at the end
-// This was not unexpected, but we probably don't want to mix async and promises like that
+// This was not unexpected, but we probably don't want to mix async and .then() like that
 // Unless we're going for that effect
+// Should probably watch some videos on both
